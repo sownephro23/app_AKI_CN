@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <link rel="manifest" href="manifest.json">
+
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; }
         .tab-content { display: none; animation: fadeIn 0.5s; }
@@ -42,7 +45,6 @@
         </nav>
 
         <main>
-            <!-- Générateur Tab -->
             <div id="generateur" class="tab-content active">
                 <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                     <div id="identification-section" class="mb-8 pb-6 border-b">
@@ -197,6 +199,7 @@
     </div>
 
     <script>
+        // --- DEBUT DU SCRIPT DE L'APPLICATION ---
         let appState = { preRiskScore: 0, postRiskScore: 0 };
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -309,6 +312,22 @@
         }
 
         function populateReferences() { const references = ["Mehran R, et al. J Am Coll Cardiol. 2004;44:1393-9.","Briguori C, et al. JACC Cardiovasc Interv. 2020;13:2065-74.","Briguori C, et al. Catheter Cardiovasc Interv. 2020;95:895-903.","Brar SS, et al. Lancet. 2014;383:1814-23.","McDonald JS, et al. Radiology. 2014;271:65-73.","Cosmai L, et al. ESMO Open. 2020;5:e000618.","van der Molen AJ, et al. Eur Radiol. 2018;28:2845-55.","Nijssen EC, et al. Lancet. 2017;389:1312-22.","Wei L, et al. BMJ Open. 2021;11:e043436.","Huang X, et al. J Cardiovasc Pharm. 2022;79:904-13.","Meregildo-Rodriguez ED, et al. Front Endocrinol. 2023;14:1307715.","Zuo T, et al. Int J Cardiol. 2016;224:286-94.","Watanabe M, et al. Circ J. 2022;86:1005-14.","Zhu G, et al. Clin Exp Nephrol. 2021;25:1022-32.","Macdonald DB, et al. Can J Kidney Health Dis. 2022:9:1-15.","Rudnick MR, et al. Am J Kidney Dis. 2020:75:105-13.","Zhang F, et al. Life Sci. 2020;259:118379.","Lu Z, et al. EBioMedicine. 2017;17:101-7.","Wong GT, et al. Br J Anaesth. 2016;117 Suppl 2:ii63-73.","Li Y, et al. BMC Nephrol. 2024;25:140.","Nicola R, et al. Curr Probl Diagn Radiol. 2015;44:501-4.","Mehran R, et al. N Engl J Med. 2019;380:2146-55.","Cousin F, et al. Rev Med Liège. 2014;69:500-5.","Dapagliflozin Attenuates Contrast-induced Acute Kidney Injury by Regulating the HIF. J Cardiovasc Pharmacol. 2022;79:904-13.","Inorganic nitrate benefits contrast-induced nephropathy... Eur Heart J. 2024;45:1647-58.","Utilisation d'acétylcystéine pour la prévention... - Revue Médicale Suisse, 2005"]; const referencesList = document.querySelector("#references-list"); if(referencesList) referencesList.innerHTML = references.map(ref => `<li>${ref}</li>`).join('');}
+        // --- FIN DU SCRIPT DE L'APPLICATION ---
     </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js') // Assurez-vous que le chemin est correct
+            .then(registration => {
+              console.log('Service Worker enregistré avec succès !', registration);
+            })
+            .catch(err => {
+              console.error('Échec de l\'enregistrement du Service Worker:', err);
+            });
+        });
+      }
+    </script>
+
 </body>
 </html>

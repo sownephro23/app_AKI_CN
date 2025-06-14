@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Application: Prévention de la NIC (Version Finale Complète)</title>
+    <title>Application: Prévention de la NIC (avec Définitions)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -21,12 +21,12 @@
         .protocol-item .icon { flex-shrink: 0; width: 1.5rem; text-align: center; font-size: 1.1rem; }
         .risk-color-low { color: #16a34a; } .risk-color-moderate { color: #f59e0b; } .risk-color-high { color: #ea580c; } .risk-color-very-high { color: #dc2626; }
         .details-toggle { display: none; }
-        .protocol-box.highlight { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); transform: scale(1.02); }
+        .protocol-box.highlight { border: 3px solid #3b82f6; box-shadow: 0 0 15px rgba(59, 130, 246, 0.5); transform: scale(1.02); transition: all 0.3s ease-in-out; }
     </style>
 </head>
 <body class="text-slate-800">
 
-    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
         <header class="text-center mb-8">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Prévention Dynamique de la NIC</h1>
             <p class="text-lg text-slate-600 mt-2">Évaluation du risque et génération de protocole</p>
@@ -35,6 +35,7 @@
         <nav class="bg-white rounded-xl shadow-md p-2 mb-8 flex flex-wrap justify-center gap-2">
             <button onclick="showTab('generateur')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200 active">Générateur</button>
             <button id="nav-fiche" onclick="showTab('fiche')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200" disabled>Fiche de Synthèse</button>
+            <button onclick="showTab('definitions')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200">Définitions</button>
             <button onclick="showTab('outils')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200">Outils de Calcul</button>
             <button onclick="showTab('protocoles')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200">Algorithme des Protocoles</button>
             <button onclick="showTab('references')" class="nav-btn flex-grow md:flex-grow-0 px-3 py-2 rounded-lg text-sm md:text-base font-medium text-slate-700 hover:bg-slate-200 transition-colors duration-200">Références</button>
@@ -109,6 +110,27 @@
             <div id="fiche" class="tab-content">
                 <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
                     <div id="summary-sheet-content"></div>
+                </div>
+            </div>
+            
+             <div id="definitions" class="tab-content">
+                <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg">
+                    <h2 class="text-2xl font-bold text-blue-700 mb-6">Évolution Terminologique et Définitions</h2>
+                    <div class="space-y-6">
+                        <div class="p-5 bg-slate-100 rounded-xl">
+                            <h3 class="font-semibold text-lg text-slate-800 mb-2">Terminologie Historique : NPCI / CIN</h3>
+                            <p class="text-slate-700">Le terme "néphropathie induite par les produits de contraste (NPCI)", ou "Contrast-Induced Nephropathy (CIN)", impliquait une relation de **causalité directe** entre l'injection de produit de contraste et l'atteinte rénale. La recherche a montré que cette causalité est souvent difficile à prouver, l'atteinte rénale étant multifactorielle.</p>
+                        </div>
+                        <div class="p-5 bg-blue-50 rounded-xl border-l-4 border-blue-500">
+                            <h3 class="font-semibold text-lg text-blue-800 mb-2">Terminologie Actuelle : PC-AKI</h3>
+                            <p class="text-slate-700">Le terme **Post-Contrast Acute Kidney Injury (PC-AKI)**, ou Insuffisance Rénale Aiguë Post-Contraste, est aujourd'hui privilégié. Il définit toute insuffisance rénale aiguë survenant dans les **48 heures** suivant l'administration de produit de contraste.</p>
+                            <p class="mt-2 text-slate-600">Ce terme décrit une **association temporelle** sans présumer de la cause, reconnaissant que d'autres facteurs peuvent être impliqués.</p>
+                        </div>
+                        <div class="p-5 bg-indigo-50 rounded-xl border-l-4 border-indigo-500">
+                            <h3 class="font-semibold text-lg text-indigo-800 mb-2">Sous-groupe Spécifique : CI-AKI</h3>
+                            <p class="text-slate-700">Le terme **Contrast-Induced Acute Kidney Injury (CI-AKI)** est utilisé par KDIGO pour décrire une IRA où il y a une forte présomption que le dommage rénal est **directement induit** par le produit de contraste, en l'absence d'autres causes évidentes. Le CI-AKI est donc un sous-groupe du PC-AKI.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -244,8 +266,8 @@
             document.querySelectorAll('.protocol-box').forEach(box => box.classList.remove('highlight'));
             let elementId;
             if (level === 'Faible') elementId = 'proto-low';
-            else if (level === 'Modéré' || level === 'Élevé') elementId = 'proto-moderate';
-            else elementId = 'proto-high';
+            else if (level === 'Modéré') elementId = 'proto-moderate';
+            else if (level === 'Élevé' || level === 'Très Élevé') elementId = 'proto-high';
             const el = document.getElementById(elementId);
             if(el) el.classList.add('highlight');
         }
